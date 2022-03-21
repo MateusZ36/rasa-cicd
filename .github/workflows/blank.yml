@@ -29,12 +29,21 @@ jobs:
         id: action
         uses: RasaHQ/rasa-train-test-gha@main
         with:
+          test_type: all
           rasa_version: '2.8.25'
+          cross_validation: 'true'
+          test_nlu_args: '--folds 3'
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/upload-artifact@v2
         with:
-          name: rasa-demo-cfg
+          name: reports
           path: |
             results
             reports
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: trained-model
+          path: |
+            models
