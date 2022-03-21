@@ -1,0 +1,38 @@
+
+name: Rasa Validate
+
+on: [push,pull_request]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Train and Test Rasa Demo
+        id: action
+        uses: RasaHQ/rasa-train-test-gha@main
+        with:
+          rasa_version: '2.8.25'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          rasa_train: false
+          rasa_test: false
+          data_validate: true
+          #data_validate_args: "--fail-on-warnings"
+      - uses: actions/upload-artifact@v2
+        with:
+          name: rasa-demo-cfg
+          path: |
+            results
+            reports
+
+
+
+
+
+
+
+
