@@ -3,7 +3,6 @@ name: Rasa Validate
 
 on:
   push:
-  pull_request:
 
   workflow_dispatch:
 
@@ -14,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Train and Test Rasa Demo
+      - name: Run data validate
         id: action
         uses: RasaHQ/rasa-train-test-gha@main
         with:
@@ -23,4 +22,4 @@ jobs:
           rasa_train: false
           rasa_test: false
           data_validate: true
-          #data_validate_args: "--fail-on-warnings"
+          data_validate_args: "--fail-on-warnings"
