@@ -22,4 +22,4 @@ jobs:
           rasa_train: false
           rasa_test: false
           data_validate: true
-          data_validate_args: "--fail-on-warnings -vv"
+          data_validate_args: "-vv"
